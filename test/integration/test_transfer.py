@@ -391,7 +391,8 @@ class TestTransfer(CLITest):
         assert len(pl_ids) == 4
         self.delete_all()
 
-    @pytest.mark.parametrize('target_name', sorted(SUPPORTED), "packing", ["tar", "zip"])
+    @pytest.mark.parametrize('target_name', sorted(SUPPORTED),
+                             'packing', ["tar", "zip"])
     def test_pack_unpack(self, target_name, packing, tmpdir):
         if target_name == "datasetid" or target_name == "projectid" or\
            target_name == "idonly" or target_name == "imageid":
