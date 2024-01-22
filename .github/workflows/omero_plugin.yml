@@ -35,7 +35,9 @@ jobs:
         with:
           repository: jburel/omero-test-infra
           path: .omero
-          ref: docker_compose
+          ref: docker_compose_test
           #ref: ${{ secrets.OMERO_TEST_INFRA_REF }}
       - name: Build and run OMERO tests
-        run: POLICY_BINARY_ACCESS=+read,+write,+image,+plate .omero/docker $STAGE
+        run: |
+          export POLICY_BINARY_ACCESS='+read,+write,+image,+plate'
+          .omero/docker $STAGE
