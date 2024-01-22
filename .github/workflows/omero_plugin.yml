@@ -35,7 +35,7 @@ jobs:
         with:
           repository: jburel/omero-test-infra
           path: .omero
-          ref: docker_compose_test
+          ref: docker_compose
           #ref: ${{ secrets.OMERO_TEST_INFRA_REF }}
       - name: Build and run OMERO tests
         run: |
