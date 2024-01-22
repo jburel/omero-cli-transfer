@@ -391,21 +391,20 @@ class TestTransfer(CLITest):
         assert len(pl_ids) == 4
         self.delete_all()
 
-    @pytest.mark.parametrize('target_name', sorted(SUPPORTED), ['tar', 'zip'])
-    def test_pack_unpack(self, target_name, tmpdir, packing):
+    @pytest.mark.parametrize('target_name', sorted(SUPPORTED), "packing", ["tar", "zip"])
+    def test_pack_unpack(self, target_name, packing, tmpdir):
         if target_name == "datasetid" or target_name == "projectid" or\
            target_name == "idonly" or target_name == "imageid":
             self.create_image(target_name=target_name)
         elif target_name == "plateid" or target_name == "screenid":
             self.create_plate(plates=1, target_name=target_name)
         target = getattr(self, target_name)
-        if packing == 'tar':
+        if packing == "tar":
             name = 'test.tar'
             args = self.args + ["pack", target, str(tmpdir / name)]
-        else
+        else:
             name = 'test.zip'
             args = self.args + ["pack", target, "--zip", str(tmpdir / name)]
-
         self.cli.invoke(args, strict=True)
         self.delete_all()
         args = self.args + ["unpack", str(tmpdir / name)]
