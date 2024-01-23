@@ -391,7 +391,6 @@ class TestTransfer(CLITest):
         assert len(pl_ids) == 4
         self.delete_all()
 
- 
     @pytest.mark.parametrize('packing', ["tar", "zip"])
     @pytest.mark.parametrize('target_name', sorted(SUPPORTED))
     def test_pack_unpack(self, target_name, packing, tmpdir):
