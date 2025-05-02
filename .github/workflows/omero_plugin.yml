@@ -19,8 +19,8 @@ name: OMERO
 on:
   push:
   pull_request:
-  schedule:
-    - cron: '0 0 * * 0'
+  repository_dispatch:
+    types: [ome-resources-monitoring]
 
 jobs:
   test:
